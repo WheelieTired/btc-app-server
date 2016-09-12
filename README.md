@@ -11,6 +11,7 @@ The server is a Node.js application that runs the Express.js server-side framewo
 
 # Developing Locally
  - Install CouchDB
+ - Configure CouchDB with the couchdb-config repo to allow for Cross-origin resource sharing: https://github.com/Tour-de-Force/couchdb-config
  - Run CouchDB
   - it should give you an option to automatically start on windows
   - on linux, depending on your install, this may be the following command
