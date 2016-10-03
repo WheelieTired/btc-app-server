@@ -32,10 +32,9 @@ export function apply( req, res ) {
   // Filter req.body. We don't want the user to specify `roles`.
   const body = pick( req.body, [
     'email',
-    'username',
+    'password',
     'first',
-    'last',
-    'password'
+    'last'
   ] );
 
   const user = new User( body, { validate: true } );
