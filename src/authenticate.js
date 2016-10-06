@@ -63,7 +63,7 @@ export function createToken( email, roles ) {
 export default function authenticate( req, res ) {
   const {email, password} = req.body;
 
-  if ( email === '' || password === '' ) {
+  if ( email === '' || password === '' || email === undefined || password === undefined ) {
     return res.status( 400 ).json( {
       'bad request': 'you must supply a valid email and password'
     } );
