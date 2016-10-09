@@ -11,6 +11,7 @@ The server is a Node.js application that runs the Express.js server-side framewo
 
 # Developing Locally
  - Install CouchDB
+ - Add an admin user with username "admin" and password "admin" (be sure that CouchDB is only accessible from localhost)
  - Configure CouchDB with the couchdb-config repo to allow for Cross-origin resource sharing: https://github.com/Tour-de-Force/couchdb-config
  - Run CouchDB
   - it should give you an option to automatically start on windows
