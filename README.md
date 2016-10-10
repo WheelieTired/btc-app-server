@@ -3,10 +3,6 @@
 The server for the bicycle touring companion handles user interactions that must be handled online. Right now, the server lets users log in and publish alerts and services. While users may replicate changes from the master database to their devices, they cannot write back to the database directly. Changes must be published to the server so we can validate what goes into the official record. 
 The server is a Node.js application that runs the Express.js server-side framework. It runs in a Windows Server 2012 cloud instance on AWS. 
 
-
-[![Build Status](https://travis-ci.org/bikelomatic-complexity/btc-app-server.svg?branch=master)](https://travis-ci.org/bikelomatic-complexity/btc-app-server)
-[![Coverage Status](https://coveralls.io/repos/github/bikelomatic-complexity/btc-app-server/badge.svg?branch=coveralls)](https://coveralls.io/github/bikelomatic-complexity/btc-app-server?branch=master)
-[![Dependency Status](http://david-dm.org/bikelomatic-complexity/btc-app-server.svg)](http://david-dm.org/bikelomatic-complexity/btc-app-server)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
 
 # Developing Locally
@@ -27,7 +23,7 @@ The server is a Node.js application that runs the Express.js server-side framewo
  - Look at the apiary (`apiary.apib`) for more information.
   - You can use postman to make the requests at `localhost:8080`
 
-# Running tests locally
+# Running Tests Locally
 To run tests on you machine, it is recommended that you set the node environment
 to be set to `test`. This can be done by running the following in windows:
 ```
@@ -47,13 +43,22 @@ Any of the configurations in there can be changed. Simply set your environment
 variables on your local machine to what you want them to be. For example, to
 send emails on a windows device, you would run `set SERVER_SEND_MAIL=true`.
 
-# Images not loading in email
+## Images Not Loading in Email
 If you are developing locally, it could be the case that your images will get
 redirected and loaded through a proxy after being cached. If when testing the
 emails being sent, they do not appear to load correctly, try an email server
 that does not use a proxy (e.g. https://mailinator.com/).
 
 # Updating the AWS Server
-Travis CI is set up to push new versions of btc-app-server when releases are 
-made. Simply use the github releases feature to create a new release (make
-sure it includes a new version number).
+1. Ensure your NODE_ENV is **not** set to "production". If it is, setting it to "default" should work. There are devDependencies needed to build.
+2. Ensure the ["built" branch of btc-models](https://github.com/Tour-de-Force/btc-models/tree/built) is updated with the latest built version of master in that repo.
+3. Download a [clean zip of master](https://github.com/Tour-de-Force/btc-app-server/archive/master.zip) of this repo.
+4. Name the downloaded folder "package"
+5. Open that folder
+6. `npm install`
+7. `npm run prepublish`
+8. Delete the "node_modules" folder
+9. Create a tgz archive of the "package" folder itself
+10. Upload that archive to S3
+11. Allow everyone to open/download that archive
+12. Deploy in OpsWorks
