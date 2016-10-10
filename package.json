@@ -1,14 +1,14 @@
 {
   "name": "btc-app-server",
-  "version": "0.4.1",
-  "description": "Node Server",
-  "main": "es5/src/index.js",
+  "version": "1.0",
+  "description": "Server for the Bicycle Touring Companion app",
+  "main": "src/index.js",
   "dependencies": {
     "ajv": "^3.6.2",
     "backbone": "^1.2.3",
     "backbone-pouch": "^1.5.0",
     "body-parser": "^1.14.1",
-    "btc-models": "^0.4.2",
+    "btc-models": "https://github.com/tour-de-force/btc-models#built",
     "config": "^1.19.0",
     "express": "^4.13.3",
     "express-validator": "^2.19.1",
@@ -65,12 +65,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bikelomatic-complexity/node-server.git"
+    "url": "git+https://github.com/Tour-de-Force/btc-app-server.git"
   },
   "author": "Adventure Cycling Association",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/bikelomatic-complexity/node-server/issues"
+    "url": "https://github.com/Tour-de-Force/btc-app-server/issues"
   },
-  "homepage": "https://github.com/bikelomatic-complexity/node-server#readme"
+  "homepage": "https://github.com/Tour-de-Force/btc-app-server#readme"
 }
