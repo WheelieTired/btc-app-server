@@ -1,6 +1,6 @@
 {
   "name": "btc-app-server",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Server for the Bicycle Touring Companion app",
   "main": "src/index.js",
   "dependencies": {
