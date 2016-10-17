@@ -30,8 +30,21 @@ const expiresIn = config.get( 'token.exp' );
 
 const algorithm = 'HS256';
 
+// Passport strategy to determine if a token-holder is a user.
+export const userStrategy = new JwtStrategy(
+  {
+    issuer,
+    algorithms: [ algorithm ],
+    secretOrKey: secret,
+    authScheme: 'JWT'
+  },
+  ( jwt_payload, done ) => {
+    done( null, jwt_payload );
+  }
+);
+
 // Passport strategy to determine if a token-holder is a moderator.
-export const strategy = new JwtStrategy(
+export const moderatorStrategy = new JwtStrategy(
   {
     issuer,
     algorithms: [ algorithm ],

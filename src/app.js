@@ -34,8 +34,11 @@ import * as authenticate from './authenticate';
 import * as flag from './flag';
 import * as publish from './publish';
 
+// Allows any valid tokens
+passport.use( 'user', authenticate.userStrategy );
+
 // Allows tokens that have a moderator role
-passport.use( 'moderator', authenticate.strategy );
+passport.use( 'moderator', authenticate.moderatorStrategy );
 
 export const app = express();
 
@@ -57,7 +60,7 @@ app.get( '/flags', passport.authenticate( 'moderator' ), flag.list );
 
 const storage = multer.memoryStorage();
 const upload = multer( { storage } );
-app.post( '/publish', upload.array( 'covers' ), publish.default );
+app.post( '/publish', passport.authenticate( 'user' ), upload.array( 'covers' ), publish.default );
 
 // Used by our Elastic Load Balacers
 app.get( '/health', ( req, res ) => res.status( 200 ).send( 'ok' ) );
