@@ -65,14 +65,14 @@ export default function authenticate( req, res ) {
 
   if ( email === '' || password === '' || email === undefined || password === undefined ) {
     return res.status( 400 ).json( {
-      'bad request': 'you must supply a valid email and password'
+      'bad request': 'You must supply a valid email and password.'
     } );
   }
 
   nano_db.auth( email, password, ( err, body, headers ) => {
     if ( err ) {
       return res.status( 400 ).json( {
-        unauthorized: 'either your email, password, or both are incorrect'
+        unauthorized: 'Your email or password are incorrect.'
       } );
     } else {
       return res.status( 200 ).json( {
