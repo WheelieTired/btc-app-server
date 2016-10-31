@@ -52,6 +52,8 @@ export default function publish( req, res ) {
   } ).then( merged => {
     return Promise.all(
       merged.map( model => {
+        /* Updated the DB field with the user's id (aka their email) */
+        model.set('updated_by', req.user.email);
         const promise = model.save();
         if ( isNumber( model.index ) ) {
           const buffer = req.files[ model.index ].buffer;
