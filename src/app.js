@@ -33,6 +33,7 @@ import * as register from './register';
 import * as authenticate from './authenticate';
 import * as flag from './flag';
 import * as publish from './publish';
+import * as forgotPassword from './forgotPassword';
 
 // Allows tokens that have a moderator role
 passport.use( 'moderator', authenticate.strategy );
@@ -58,6 +59,9 @@ app.get( '/flags', passport.authenticate( 'moderator' ), flag.list );
 const storage = multer.memoryStorage();
 const upload = multer( { storage } );
 app.post( '/publish', upload.array( 'covers' ), publish.default );
+
+app.post( '/forgotPassword', forgotPassword.checkEmail );
+app.get( '/forgotPassword/:verification', forgotPassword.verify );
 
 // Used by our Elastic Load Balacers
 app.get( '/health', ( req, res ) => res.status( 200 ).send( 'ok' ) );
