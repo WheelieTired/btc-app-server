@@ -23,8 +23,6 @@ import fs from 'fs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 
-import { nano_db } from './util/couch';
-
 import { User, UserRefCollection } from 'btc-models';
 import { mail } from './util/mailer';
 
@@ -44,7 +42,6 @@ export function createToken( email, roles ) {
 export function checkEmail( req, res ) {
   const { email } = req.body;
   const emailAddress = email;
-  console.log(typeof emailAddress);
   if ( emailAddress === '' || emailAddress === undefined ) {
     return res.status( 400 ).json( {
       'bad request': 'You must supply a valid email.'
@@ -87,45 +84,5 @@ export function checkEmail( req, res ) {
   return res.status( 200 ).json( {
     ok: 'an email has been sent',
     //auth_token: createToken( email, body.roles )
-  } );
-}
-
-// ## Verify email
-// If the user recieves our token in their inbox, we know they control the
-// email account.
-export function verify( req, res ) {
-  req.checkParams( 'verification', 'verification token required' ).notEmpty();
-
-  const errors = req.validationErrors();
-  if ( errors ) {
-    return res.status( 400 ).json( 'error', errors );
-  }
-
-  const {verification} = req.params;
-  //TODO route to reset password page instead
-  const thankYouPage = fs.readFileSync( './staticPages/thankyou.html', 'utf8' );
-
-  new UserRefCollection().fetch( {
-    // Look for an unverified user with a matching verification token. If that
-    // user really exists, then mark them verified.
-    success: ( users, response, options ) => {
-      const user = users.findWhere( { verification, verified: false } );
-      if ( user ) {
-        user.unset( 'verification' );
-        user.save( { verified: true }, {
-          force: true,
-          success: ( model, response, options ) => res.send( template( thankYouPage )() ),
-          error: ( model, response, options ) => res.status( 500 ).end()
-        } );
-        if ( user.validationError ) {
-          res.status( 400 ).json( { error: user.validationError } );
-        }
-      } else {
-        res.status( 400 ).json( { error: 'you have not registered yet' } );
-      }
-    },
-
-    // Couldn't fetch user models -- not the user's problem
-    error: ( users, response, options ) => res.status( 500 ).end()
   } );
 }
