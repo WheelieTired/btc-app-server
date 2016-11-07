@@ -33,6 +33,7 @@ import * as register from './register';
 import * as authenticate from './authenticate';
 import * as flag from './flag';
 import * as publish from './publish';
+import * as comment from './comment';
 import * as forgotPassword from './forgotPassword';
 import * as resetPassword from './resetPassword';
 
@@ -63,6 +64,9 @@ app.get( '/flags', passport.authenticate( 'moderator' ), flag.list );
 const storage = multer.memoryStorage();
 const upload = multer( { storage } );
 app.post( '/publish', passport.authenticate( 'user' ), upload.array( 'covers' ), publish.default );
+
+/* TODO: Comment in the authentication middleware once we handle this. */
+app.post( '/comment', /*passport.authenticate( 'user' ),*/ comment.default );
 
 app.post( '/forgotPassword', forgotPassword.checkEmail );
 app.post( '/resetPassword', resetPassword.updatePassword );
