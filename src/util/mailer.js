@@ -42,3 +42,16 @@ export function mail( registrant, token ) {
     html: _.template( registrationTemplate )( { first, last, api, token, assetDomain } )
   } );
 }
+
+export function forgotPassword( registrant, token ) {
+  const forgotPasswordTemplate = fs.readFileSync( './emailTemplates/forgotPassword.html', 'utf8' );
+  const fpSubject = 'Forgotten Password For Your Bicycle Touring Companion Account';
+  const {first, last} = registrant.attributes;
+  const assetDomain = `http://${domain}:${port}`;
+  transporter.sendMail( {
+    from: mailAccount,
+    to: registrant.get( 'email' ),
+    subject: fpSubject,
+    html: _.template( forgotPasswordTemplate )( { first, last, api, token, assetDomain } )
+  } );
+}

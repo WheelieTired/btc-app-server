@@ -34,6 +34,8 @@ import * as authenticate from './authenticate';
 import * as flag from './flag';
 import * as publish from './publish';
 import * as comment from './comment';
+import * as forgotPassword from './forgotPassword';
+import * as resetPassword from './resetPassword';
 
 // Allows any valid tokens
 passport.use( 'user', authenticate.userStrategy );
@@ -65,6 +67,9 @@ app.post( '/publish', passport.authenticate( 'user' ), upload.array( 'covers' ),
 
 /* TODO: Comment in the authentication middleware once we handle this. */
 app.post( '/comment', /*passport.authenticate( 'user' ),*/ comment.default );
+
+app.post( '/forgotPassword', forgotPassword.checkEmail );
+app.post( '/resetPassword', resetPassword.updatePassword );
 
 // Used by our Elastic Load Balacers
 app.get( '/health', ( req, res ) => res.status( 200 ).send( 'ok' ) );
