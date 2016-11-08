@@ -24,7 +24,7 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 
 import { User, UserRefCollection } from 'btc-models';
-import { mail } from './util/mailer';
+import { forgotPassword } from './util/mailer';
 
 
 const secret = config.get( 'token.secret' );
@@ -66,7 +66,7 @@ export function checkEmail( req, res ) {
           // Mail a confirmation message to the user
           success: ( user, response, options ) => {
             if ( config.get( 'mail.send' ) ) {
-              mail( user, verification );
+              forgotPassword( user, verification );
             } else {
               console.log( 'verification: ' + verification );
             }
