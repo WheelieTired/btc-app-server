@@ -6,7 +6,7 @@ couch:
   # password: env SERVER_COUCH_PASSWORD
 token:
   # secret: env SERVER_SECRET
-  iss: adventurecycling.org
+  iss: bicycletouringcompanion.com
   exp: 15m
 server:
   domain: btc-app-server-1559933658.us-east-1.elb.amazonaws.com
