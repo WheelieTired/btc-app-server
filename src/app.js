@@ -59,7 +59,7 @@ app.post( '/register', register.apply );
 app.get( '/register/:verification', register.verify );
 
 app.post( '/authenticate', authenticate.default );
-app.get( '/flags', passport.authenticate( 'moderator' ), flag.list );
+app.post( '/flag', passport.authenticate( 'user' ), flag.default );
 
 const storage = multer.memoryStorage();
 const upload = multer( { storage } );
