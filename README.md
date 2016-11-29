@@ -56,9 +56,8 @@ that does not use a proxy (e.g. https://mailinator.com/).
 4. Name the downloaded folder "package"
 5. Open that folder
 6. `npm install`
-7. `npm run prepublish`
-8. Delete the "node_modules" folder
-9. Create a tgz archive of the "package" folder itself
-10. Upload that archive to S3
-11. Allow everyone to open/download that archive
-12. Deploy in OpsWorks
+7. Delete the "node_modules" folder
+8. Create a tgz archive of the "package" folder itself
+9. Upload that archive to S3
+10. Allow everyone to open/download that archive
+11. Deploy in OpsWorks
