@@ -19,7 +19,8 @@
 import { PointCollection } from 'btc-models';
 
 export default function flag( req, res ) {
-  const {pointId} = req.body;
+	//see if the information is getting there in the first place.
+  	const {pointId} = req.body;
 
   if ( pointId === '' || pointId === undefined ) {
     return res.status( 400 ).json( {
@@ -38,13 +39,19 @@ export default function flag( req, res ) {
 			/*Add the user name to the array flagged_by*/
 			var cur_flagged_by = point.get('flagged_by');
 
-			if(cur_flagged_by.indexOf(req.user.email) > -1){
-				return res.status( 400 ).json( { error: "You've already flagged this point"} );
+			for (var i = 0, len = cur_flagged_by.length; i< len; i++){
+				if(cur_flagged_by[i].user == req.user.email){
+					return res.status( 400 ).json( { error: "You've already flagged this point"});
+				}
 			}
 
-			cur_flagged_by.push(req.user.email);
+			cur_flagged_by.push({user: req.user.email, reason: req.body.flagReason} );
 			point.set('flagged_by', cur_flagged_by);
 			point.set('updated_by', req.user.email);
+
+			if(point.isValid() == false) {
+				return res.status( 400 ).json( { error: "Enter a reason for flagging between 1 and 140 characters" } );
+			}
 
 			// Save comment into the database
 			point.save( {}, {
