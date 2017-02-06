@@ -39,7 +39,7 @@ export default function flag( req, res ) {
 			//ELSE: there is a point and the following can take place...
 			var cur_flagged_by = point.get('flagged_by');
 
-			//chekcing to see if user already flagged the point.
+			//checking to see if user already flagged the point.
 			for (var i = 0, len = cur_flagged_by.length; i< len; i++){
 				if(cur_flagged_by[i].user == req.user.email){
 					//Let the user know they have already flagged this point.
@@ -51,7 +51,7 @@ export default function flag( req, res ) {
 			point.set('flagged_by', cur_flagged_by);
 			point.set('updated_by', req.user.email);
 			
-			if ( cur_flagged_by.length == 5 ){		
+			if ( cur_flagged_by.length >= 5 ){		
 				//set the is_hidden boolean field to true.
 				point.set('is_hidden', true);
 			}
