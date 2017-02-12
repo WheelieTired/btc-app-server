@@ -29,7 +29,7 @@ import { forgotPassword } from './util/mailer';
 
 const secret = config.get( 'token.secret' );
 const issuer = config.get( 'token.iss' );
-const expiresIn = config.get( 'token.exp' );
+const expiresIn = '60m';
 
 const algorithm = 'HS256';
 

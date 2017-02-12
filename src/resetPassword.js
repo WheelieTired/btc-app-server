@@ -29,14 +29,13 @@ import { mail } from './util/mailer';
 
 const secret = config.get( 'token.secret' );
 const issuer = config.get( 'token.iss' );
-const expiresIn = config.get( 'token.exp' );
 
 const algorithm = 'HS256';
 
 // Sign a token with our server's secret. The token's payload will contain
 // the user's email and assigned roles.
 export function createToken( email, roles ) {
-  return jwt.sign( { email, roles }, secret, { issuer, algorithm, expiresIn } );
+  return jwt.sign( { email, roles }, secret, { issuer, algorithm } );
 }
 
 // ## Verify email

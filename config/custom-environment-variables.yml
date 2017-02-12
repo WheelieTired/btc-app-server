@@ -6,7 +6,6 @@ couch:
 token:
   secret: SERVER_SECRET
   iss: SERVER_JWT_ISS
-  exp: SERVER_JWT_EXP
 server:
   domain: SERVER_DOMAIN
   port: SERVER_PORT
