@@ -7,7 +7,6 @@ couch:
 token:
   secret: secret
   iss: bicycletouringcompanion.com
-  exp: 15m
 server:
   domain: localhost
   port: 8080
