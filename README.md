@@ -34,6 +34,8 @@ or if you are running linux, by running:
 export NODE_ENV=test
 ```
 
+If you'd like a coverage report, run 'npm run coverage' and check the coverage folder that appears in your project's root directory for lcov-report/index.html. Also, 'npm run test' will also provide a brief coverage report via it's CLI output.
+
 # Sending Emails
 One of the things you can do with btc-app-server is send emails upon registering
 a new user! To have the email send, you will need to set the configuration as it
