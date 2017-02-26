@@ -64,7 +64,7 @@ export default function publish( req, res ) {
             	photo.set('updated_by', req.user.email);
             	const photoPromise = photo.save();
 
-            	return photoPromise.then( ( ) => photo.attach(buffer, 'photo.png', 'image/png') );
+            	return photoPromise.then( ( ) => photo.attach(buffer, 'coverPhoto.jpg', 'image/jpg') );
             }
           );
         } else {
