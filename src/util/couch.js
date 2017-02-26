@@ -24,7 +24,7 @@
 // goal is to keep model code unaware of connection details. We are not able
 // to separate PouchDB Sync options from the model code, however.
 
-import { connectMut, pointModels, User, UserCollection, Login, UserRef, UserRefCollection } from 'btc-models';
+import { connectMut, pointModels, Photo, User, UserCollection, Login, UserRef, UserRefCollection } from 'btc-models';
 
 import PouchDB from 'pouchdb';
 import nano from 'nano';
@@ -37,6 +37,10 @@ export const root = `${protocol}://${domain}:${port}`;
 const pointsUrl = root + '/' + 'points';
 const points = new PouchDB( pointsUrl, { auth: { username, password } } );
 connectMut( points, pointModels );
+
+const photosUrl = root + '/' + 'photos';
+const photos = new PouchDB( photosUrl, { auth: { username, password } } );
+connectMut( photos, [ Photo ] );
 
 const _usersUrl = root + '/' + '_users';
 const _users = ( process.env.NODE_ENV === 'test' ) ?

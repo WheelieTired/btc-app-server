@@ -17,9 +17,9 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { PointCollection } from 'btc-models';
+import { PointCollection, Photo } from 'btc-models';
 
-import { isArray, isNumber } from 'lodash';
+import { isArray, isNumber, cloneDeep } from 'lodash';
 
 // Endpoint to publish multiple point updates
 //
@@ -55,10 +55,17 @@ export default function publish( req, res ) {
         /* Updated the DB field with the user's id (aka their email) */
         model.set('updated_by', req.user.email);
         const promise = model.save();
-        if ( isNumber( model.index ) ) {
+        if ( isNumber( model.index ) && req.files[ model.index ] != null ) {
           const buffer = req.files[ model.index ].buffer;
           return promise.then(
-            ( ) => model.attach( buffer, 'cover.png', 'image/png' )
+            ( ) => {
+            	const photo = new Photo();
+            	photo.set('_id', model.id);
+            	photo.set('updated_by', req.user.email);
+            	const photoPromise = photo.save();
+
+            	return photoPromise.then( ( ) => photo.attach(buffer, 'photo.png', 'image/png') );
+            }
           );
         } else {
           return promise;
