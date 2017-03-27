@@ -19,6 +19,7 @@
 
 import { contains } from 'underscore';
 import { Strategy as JwtStrategy } from 'passport-jwt';
+import { ExtractJwt } from 'passport-jwt';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 
@@ -35,7 +36,8 @@ export const userStrategy = new JwtStrategy(
     issuer,
     algorithms: [ algorithm ],
     secretOrKey: secret,
-    authScheme: 'JWT'
+    authScheme: 'JWT',
+    jwtFromRequest: ExtractJwt.fromAuthHeader()
   },
   ( jwt_payload, done ) => {
     done( null, jwt_payload );
@@ -48,7 +50,8 @@ export const moderatorStrategy = new JwtStrategy(
     issuer,
     algorithms: [ algorithm ],
     secretOrKey: secret,
-    authScheme: 'JWT'
+    authScheme: 'JWT',
+    jwtFromRequest: ExtractJwt.fromAuthHeader()
   },
   ( jwt_payload, done ) => {
     if ( contains( jwt_payload.roles, 'moderator' ) ) {
