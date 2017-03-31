@@ -70,5 +70,8 @@ app.post( '/resetPassword', resetPassword.updatePassword );
 // Used by our Elastic Load Balacers
 app.get( '/health', ( req, res ) => res.status( 200 ).send( 'ok' ) );
 
+// Used for our sanity in verifying deployments
+app.get( '/version', ( req, res ) => res.status( 200 ).send( '1.0 (build 15.2)' ) );
+
 // Host the static content of staticPages
 app.use( express.static( __dirname + '/../staticPages' ) );
