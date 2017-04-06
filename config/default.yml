@@ -8,8 +8,13 @@ token:
   secret: secret
   iss: bicycletouringcompanion.com
 server:
+  protocol: http
   domain: localhost
   port: 8080
 mail:
   account: no-reply@bicycletouringcompanion.com
   send: false
+  url:
+    protocol: http
+    domain: localhost
+    port: 8080

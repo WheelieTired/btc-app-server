@@ -25,8 +25,9 @@ import _ from 'underscore';
 const subject = 'Register Your Bicycle Touring Companion Account';
 const mailAccount = config.get( 'mail.account' );
 
-const {domain, port} = config.get( 'server' );
-const api = `http://${domain}:${port}`;
+const { url } = config.get( 'mail' );
+const { protocol, domain, port } = url;
+const api = `${protocol}://${domain}:${port}`;
 
 /** @todo The default transporter is unreliable */
 const transporter = nodemailer.createTransport();
@@ -34,7 +35,7 @@ const transporter = nodemailer.createTransport();
 export function mail( registrant, token ) {
   const registrationTemplate = fs.readFileSync( './emailTemplates/registration.html', 'utf8' );
   const {first, last} = registrant.attributes;
-  const assetDomain = `http://${domain}:${port}`;
+  const assetDomain = `${protocol}://${domain}:${port}`;
   transporter.sendMail( {
     from: mailAccount,
     to: registrant.get( 'email' ),
@@ -47,7 +48,7 @@ export function forgotPassword( registrant, token ) {
   const forgotPasswordTemplate = fs.readFileSync( './emailTemplates/forgotPassword.html', 'utf8' );
   const fpSubject = 'Forgotten Password For Your Bicycle Touring Companion Account';
   const {first, last} = registrant.attributes;
-  const assetDomain = `http://${domain}:${port}`;
+  const assetDomain = `${protocol}://${domain}:${port}`;
   transporter.sendMail( {
     from: mailAccount,
     to: registrant.get( 'email' ),

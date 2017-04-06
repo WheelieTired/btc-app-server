@@ -1,4 +1,5 @@
 couch:
+  protocol: SERVER_COUCH_PROTOCOL
   domain: SERVER_COUCH_DOMAIN
   port: SERVER_COUCH_PORT
   username: SERVER_COUCH_USERNAME
@@ -7,7 +8,15 @@ token:
   secret: SERVER_SECRET
   iss: SERVER_JWT_ISS
 server:
+  protocol: SERVER_PROTOCOL
   domain: SERVER_DOMAIN
   port: SERVER_PORT
+  certificate: SERVER_CERTIFICATE_FILE
+  key: SERVER_KEY_FILE
 mail:
+  account: SERVER_MAIL_ACCOUNT
   send: SERVER_SEND_MAIL
+  url:
+    protocol: SERVER_MAIL_URL_PROTOCOL
+    domain: SERVER_MAIL_URL_DOMAIN
+    port: SERVER_MAIL_URL_PORT

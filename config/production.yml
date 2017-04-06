@@ -8,7 +8,15 @@ token:
   # secret: env SERVER_SECRET
   iss: bicycletouringcompanion.com
 server:
+  protocol: https
   domain: btc-app-server-1559933658.us-east-1.elb.amazonaws.com
-  port: 80
+  port: 8443
+  # certificate: env SERVER_CERTIFICATE_FILE
+  # key: env SERVER_KEY_FILE
 mail:
+  account: no-reply@bicycletouringcompanion.com
   send: true
+  url:
+    protocol: https
+    domain: btc-server.bicycletouringcompanion.com
+    port: 443

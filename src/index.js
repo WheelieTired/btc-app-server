@@ -17,9 +17,24 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import http from 'http';
+import https from 'https';
+import fs from 'fs';
+
 import { app } from './app';
 import config from 'config';
 
-const {domain, port} = config.get( 'server' );
-app.listen( port );
-console.log( `Serving at http://${domain}:${port}` );
+const {protocol, domain, port, certificate, key} = config.get( 'server' );
+
+if (protocol == "https") {
+	let certificateFileContents = fs.readFileSync(certificate, 'utf8');
+	let keyFileContents = fs.readFileSync(key, 'utf8');
+	var options = {cert: certificateFileContents, key: keyFileContents};
+
+	https.createServer(options, app).listen(port);
+}
+else {
+	http.createServer(app).listen(port);
+}
+
+console.log( `Serving at ${protocol}://${domain}:${port}` );
