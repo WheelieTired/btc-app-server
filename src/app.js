@@ -71,7 +71,7 @@ app.post( '/resetPassword', resetPassword.updatePassword );
 app.get( '/health', ( req, res ) => res.status( 200 ).send( 'ok' ) );
 
 // Used for our sanity in verifying deployments
-app.get( '/version', ( req, res ) => res.status( 200 ).send( '1.0 (build 18)' ) );
+app.get( '/version', ( req, res ) => res.status( 200 ).send( '1.0 (build 19)' ) );
 
 // Host the static content of staticPages
 app.use( express.static( __dirname + '/../staticPages' ) );
