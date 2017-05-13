@@ -25,6 +25,8 @@ import config from 'config';
 
 import { nano_db } from './util/couch';
 
+import { User, UserRefCollection } from 'btc-models';
+
 const secret = config.get( 'token.secret' );
 const issuer = config.get( 'token.iss' );
 
@@ -90,10 +92,23 @@ export default function authenticate( req, res ) {
         unauthorized: 'Your email or password are incorrect.'
       } );
     } else {
-      return res.status( 200 ).json( {
-        ok: 'a token has been provided',
-        auth_token: createToken( email, body.roles )
-      } );
+      new UserRefCollection().fetch( {
+        success: ( users, response, options ) => {
+          const user = users.findWhere( { email: email } );
+          if ( user ) {
+            return res.status( 200 ).json( {
+              ok: 'a token has been provided',
+              auth_token: createToken( email, body.roles ),
+              first_name: user.attributes.first,
+              last_name: user.attributes.last,
+            } );
+          } else {
+            return res.status( 400 ).json( { error: 'user does not exist' } );
+          }
+        },
+        // Couldn't fetch user models -- not the user's problem
+        error: ( users, response, options ) => res.status( 500 ).end()
+      });
     }
   } );
 }
