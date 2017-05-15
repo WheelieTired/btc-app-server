@@ -52,8 +52,8 @@ export default function publish( req, res ) {
   } ).then( merged => {
     return Promise.all(
       merged.map( model => {
-        /* Updated the DB field with the user's id (aka their email) */
-        model.set('updated_by', req.user.email);
+        /* Updated the DB field with the user's id (aka their uuid) */
+        model.set('updated_by', req.user.uuid);
         const promise = model.save();
         if ( isNumber( model.index ) && req.files[ model.index ] != null ) {
           const buffer = req.files[ model.index ].buffer;
@@ -61,7 +61,7 @@ export default function publish( req, res ) {
             ( ) => {
             	const photo = new Photo();
             	photo.set('_id', model.id);
-            	photo.set('updated_by', req.user.email);
+            	photo.set('updated_by', req.user.uuid);
             	const photoPromise = photo.save();
 
             	return photoPromise.then( ( ) => photo.attach(buffer, 'coverPhoto.jpg', 'image/jpg') );
