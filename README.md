@@ -1,4 +1,4 @@
-# App server for the Bicycle Touring Companion
+# API server for Bicycle Touring Companion
 
 The server for the bicycle touring companion handles user interactions that must be handled online. Right now, the server lets users log in and publish alerts and services. While users may replicate changes from the master database to their devices, they cannot write back to the database directly. Changes must be published to the server so we can validate what goes into the official record. 
 The server is a Node.js application that runs the Express.js server-side framework. It runs in a Windows Server 2012 cloud instance on AWS. 
@@ -52,6 +52,7 @@ emails being sent, they do not appear to load correctly, try an email server
 that does not use a proxy (e.g. https://mailinator.com/).
 
 # Updating the AWS Server
+0. Update the build number here: https://github.com/Tour-de-Force/btc-app-server/blob/master/src/app.js#L74
 1. Ensure your NODE_ENV is **not** set to "production". If it is, setting it to "default" should work. There are devDependencies needed to build.
 2. Ensure the ["built" branch of btc-models](https://github.com/Tour-de-Force/btc-models/tree/built) is updated with the latest built version of master in that repo.
 3. Download a [clean zip of master](https://github.com/Tour-de-Force/btc-app-server/archive/master.zip) of this repo.
@@ -63,3 +64,4 @@ that does not use a proxy (e.g. https://mailinator.com/).
 9. Upload that archive to S3 (call it `btc-app-server-latest.tgz` in the btc-app-server bucket)
 10. Make that archive world readable
 11. Deploy in OpsWorks (click the deploy button)
+12. Check that the build number is what you expect: https://btc-server.bicycletouringcompanion.com/version
