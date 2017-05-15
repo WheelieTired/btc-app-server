@@ -61,5 +61,5 @@ that does not use a proxy (e.g. https://mailinator.com/).
 7. Delete the "node_modules" folder
 8. Create a tgz archive of the "package" folder itself
 9. Upload that archive to S3 (call it `btc-app-server-latest.tgz` in the btc-app-server bucket)
-10. Allow everyone to open/download that archive
+10. Make that archive world readable
 11. Deploy in OpsWorks (click the deploy button)
