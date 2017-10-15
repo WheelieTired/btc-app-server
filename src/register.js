@@ -90,9 +90,14 @@ export function verify( req, res ) {
     // Look for an unverified user with a matching verification token. If that
     // user really exists, then mark them verified.
     success: ( users, response, options ) => {
+
+    const verifiedUser = users.findWhere( {verification, verified: true});
+    if (verifiedUser){
+      res.status( 400 ).json( {error: 'email already verified'});
+    }
       const user = users.findWhere( { verification, verified: false } );
       if ( user ) {
-        user.unset( 'verification' );
+        //user.unset( 'verification' ); commented out in order to know if user is already registered
         user.save( { verified: true }, {
           force: true,
           success: ( model, response, options ) => res.send( template( thankYouPage )() ),
