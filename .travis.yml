@@ -16,14 +16,7 @@ cache:
   directories:
   - node_modules
 notifications:
-  email:
-    on_success: never
-  slack:
-    on_success: change
-    on_failure: change
-    on_start: never
-    rooms:
-      secure: Js010YanzCoQgtl42S0DNw/WgGy5SgPILb/PCtUjd/rw0Sd8ejHwA1O2zmjBhU1lrW8YuZSu8zmLtD1a+BDxXSz+fLRNb68qWWWhDO0bqhDju+YktNlcSHTgunt3d4AfgKoSKo7+mspKWg29O66tHjx2ib50nS6kw/6NJE00BFDFFKuOaYMtLPpkIbc5XWH41AaTY44meGym6mQPSfc2I6Yr/lBE1Gr9wIwWNR52RdfSgWK+zAeTBeLEO8CsZDF0IE+HUyV2+YtnJtXwkofViTNovjiLe0a803Yd06KKr/FcR5bWf2ToYC5EUiln0lWCx92OZGmwFxSzcuef1EpwxKmpO5fCholy7u1n2TMkbAcXqJQQT7tB+0mu46sdkMh2mMBwihBaIZjNgdwEH9tGCk7rp6iTO4uPxpKu3dbgPJRXrZE16iQiEb1wBs7qmW9T2iANRCOaRKMP7yk0oy5VCqj2sF5v3lJbmTtiweHCogV8V6J4riyx730hwVlxRyJIefrv98SJuolvmPtUiggYohIEe9qxcJeE0DegBLanE71dHVExATHOTmP3WZuoAZ5uxvb+qUIDrO0RHeNAhzP9JmTV1VZzWawafAexTLvsv/cZMPnoY0EdZoJHOb4EnRoCS/i1n7qk2BPjZn7JuDNMZhsb8SOYCximZJXHn7N7eew=
+  slack: adventure-cycling:tk7JVJnQzyDeWadDzfdxcZYT
 before_deploy:
   - npm pack
   - ln -s btc-app-server-*.tgz btc-app-server-latest.tgz
