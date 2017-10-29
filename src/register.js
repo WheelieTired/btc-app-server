@@ -61,12 +61,12 @@ export function apply( req, res ) {
 
     error: ( user, response, options ) => {
       // We may get an error if the email is already registered.
-   	  // Let's make it make more sense if we do.
-      if (response.error == "conflict") {
-      	return res.status( 400 ).json( { error: "There is already an account with that email address." } );
+       // Let's make it make more sense if we do.
+      if (response.error == 'conflict') {
+        return res.status( 400 ).json( { error: 'There is already an account with that email address.' } );
       }
       else {
-      	return res.status( 400 ).json( { error: response.message } );
+        return res.status( 400 ).json( { error: response.message } );
       }
     }
   } );

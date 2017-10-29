@@ -19,7 +19,7 @@
 
 import { PointCollection, Photo } from 'btc-models';
 
-import { isArray, isNumber, cloneDeep } from 'lodash';
+import { isArray, isNumber} from 'lodash';
 
 // Endpoint to publish multiple point updates
 //
@@ -59,12 +59,12 @@ export default function publish( req, res ) {
           const buffer = req.files[ model.index ].buffer;
           return promise.then(
             ( ) => {
-            	const photo = new Photo();
-            	photo.set('_id', model.id);
-            	photo.set('updated_by', req.user.email);
-            	const photoPromise = photo.save();
+              const photo = new Photo();
+              photo.set('_id', model.id);
+              photo.set('updated_by', req.user.email);
+              const photoPromise = photo.save();
 
-            	return photoPromise.then( ( ) => photo.attach(buffer, 'coverPhoto.jpg', 'image/jpg') );
+              return photoPromise.then( ( ) => photo.attach(buffer, 'coverPhoto.jpg', 'image/jpg') );
             }
           );
         } else {
