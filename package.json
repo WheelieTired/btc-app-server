@@ -46,7 +46,7 @@
     "prepublish": "babel src -d lib",
     "format": "esformatter --diff \"?(src|test)/**/*.js\"",
     "format:replace": "esformatter -i \"?(src|test)/**/*.js\"",
-    "lint": "eslint \"?(src|test)/**/*.js\"",
+    "lint": "eslint \"?(src)/**/*.js\"",
     "doc": "docco src/*.js src/*/*.js",
     "start": "node lib/index.js",
     "clean": "rm -r lib",

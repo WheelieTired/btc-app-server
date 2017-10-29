@@ -25,7 +25,7 @@ import config from 'config';
 
 import { nano_db } from './util/couch';
 
-import {UserRefCollection } from 'btc-models';
+import { UserRefCollection } from 'btc-models';
 
 const secret = config.get( 'token.secret' );
 const issuer = config.get( 'token.iss' );
@@ -108,7 +108,7 @@ export default function authenticate( req, res ) {
         },
         // Couldn't fetch user models -- not the user's problem
         error: ( users, response, options ) => res.status( 500 ).end()
-      });
+      } );
     }
   } );
 }

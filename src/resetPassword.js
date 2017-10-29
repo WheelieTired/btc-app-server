@@ -22,7 +22,7 @@ import fs from 'fs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 
-import {UserRefCollection } from 'btc-models';
+import { UserRefCollection } from 'btc-models';
 
 
 const secret = config.get( 'token.secret' );
@@ -41,9 +41,9 @@ export function createToken( email, roles ) {
 // email account.
 export function updatePassword( req, res ) {
   const {password, verification} = req.body;
-  if ( verification === undefined || verification === '' || password === undefined || password === '') {
+  if ( verification === undefined || verification === '' || password === undefined || password === '' ) {
     return res.status( 400 ).json( {
-          'bad request': 'one or more of the attributes is empty'
+      'bad request': 'one or more of the attributes is empty'
     } );
   }
 
@@ -53,7 +53,7 @@ export function updatePassword( req, res ) {
     success: ( users, response, options ) => {
       const user = users.findWhere( { verification: verification } );
       if ( user ) {
-        user.save( { verified: true, password: password, verification: createToken( user.emailAddress, [] )}, {
+        user.save( { verified: true, password: password, verification: createToken( user.emailAddress, [] ) }, {
           force: true,
           success: ( model, response, options ) => res.send( template( thankYouPage )() ),
           error: ( model, response, options ) => res.status( 500 ).end()
@@ -63,7 +63,7 @@ export function updatePassword( req, res ) {
         }
       } else {
         res.status( 400 ).json( { error: 'user does not exist or token is not valid' } );
-             }
+      }
     },
 
     // Couldn't fetch user models -- not the user's problem
