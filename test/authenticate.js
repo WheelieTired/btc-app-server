@@ -55,7 +55,7 @@ describe( 'Routes', function() {
           this.request.post( '/authenticate' )
             .send( { email: 'foo@example.com', password: 'foo' } )
             .expect( 200, done );
-        } **/);
+        } **/ );
         it( '+ Response 200 (provides auth_token)', function( done ) {
           this.request.post( '/authenticate' )
             .send( { email: 'foo@example.com', password: 'foo' } )

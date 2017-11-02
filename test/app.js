@@ -68,7 +68,7 @@ describe( 'Moderator user', function() {
           assert.isArray( res.body );
         } )
         .end( done );
-    } **/);
+    } **/ );
     after( function() {
       this.stub.restore();
     } );
