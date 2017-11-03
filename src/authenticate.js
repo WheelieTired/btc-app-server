@@ -25,7 +25,7 @@ import config from 'config';
 
 import { nano_db } from './util/couch';
 
-import { UserRefCollection } from 'btc-models';
+import { User, UserRefCollection } from 'btc-models';
 
 const secret = config.get( 'token.secret' );
 const issuer = config.get( 'token.iss' );
@@ -39,7 +39,7 @@ export const userStrategy = new JwtStrategy(
     algorithms: [ algorithm ],
     secretOrKey: secret,
     authScheme: 'JWT',
-    jwtFromRequest: ExtractJwt.fromAuthHeader()
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
   },
   ( jwt_payload, done ) => {
     done( null, jwt_payload );
@@ -53,7 +53,7 @@ export const moderatorStrategy = new JwtStrategy(
     algorithms: [ algorithm ],
     secretOrKey: secret,
     authScheme: 'JWT',
-    jwtFromRequest: ExtractJwt.fromAuthHeader()
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
   },
   ( jwt_payload, done ) => {
     if ( contains( jwt_payload.roles, 'moderator' ) ) {
@@ -108,7 +108,7 @@ export default function authenticate( req, res ) {
         },
         // Couldn't fetch user models -- not the user's problem
         error: ( users, response, options ) => res.status( 500 ).end()
-      });
+      } );
     }
   } );
 }

@@ -19,7 +19,7 @@
 
 import { PointCollection, Photo } from 'btc-models';
 
-import { isArray, isNumber } from 'lodash';
+import { isArray, isNumber, cloneDeep } from 'lodash';
 
 // Endpoint to publish multiple point updates
 //
@@ -37,7 +37,7 @@ export default function publish( req, res ) {
   const existing = new PointCollection( [], {
     keys: models.map( doc => doc._id )
   } );
-  existing.fetch().then( ( ) => {
+  existing.fetch().then( () => {
     try {
       return new PointCollection( models, { deindex: true } );
     } catch ( err ) {
@@ -53,18 +53,18 @@ export default function publish( req, res ) {
     return Promise.all(
       merged.map( model => {
         /* Updated the DB field with the user's id (aka their email) */
-        model.set('updated_by', req.user.email);
+        model.set( 'updated_by', req.user.email );
         const promise = model.save();
         if ( isNumber( model.index ) && req.files[ model.index ] != null ) {
           const buffer = req.files[ model.index ].buffer;
           return promise.then(
-            ( ) => {
-            	const photo = new Photo();
-            	photo.set('_id', model.id);
-            	photo.set('updated_by', req.user.email);
-            	const photoPromise = photo.save();
+            () => {
+              const photo = new Photo();
+              photo.set( '_id', model.id );
+              photo.set( 'updated_by', req.user.email );
+              const photoPromise = photo.save();
 
-            	return photoPromise.then( ( ) => photo.attach(buffer, 'coverPhoto.jpg', 'image/jpg') );
+              return photoPromise.then( () => photo.attach( buffer, 'coverPhoto.jpg', 'image/jpg' ) );
             }
           );
         } else {
@@ -73,7 +73,7 @@ export default function publish( req, res ) {
       } )
     );
   } ).then(
-    ( ) => res.status( 200 ).send( 'points saved successfully' )
+    () => res.status( 200 ).send( 'points saved successfully' )
   ).catch(
     err => res.status( 400 ).send( err )
   );
