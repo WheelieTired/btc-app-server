@@ -90,10 +90,10 @@ export function verify( req, res ) {
     // user really exists, then mark them verified.
     success: ( users, response, options ) => {
 
-      const verifiedUser = users.findWhere( { verification, verified: true } );
-      if ( verifiedUser ) {
-        res.status( 400 ).json( { error: 'email already verified' } );
-      }
+    const verifiedUser = users.findWhere( {verification, verified: true});
+    if (verifiedUser){
+      res.status( 400 ).json( {error: 'email already verified'});
+    }
       const user = users.findWhere( { verification, verified: false } );
       if ( user ) {
         //user.unset( 'verification' ); commented out in order to know if user is already registered

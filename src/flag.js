@@ -19,8 +19,8 @@
 import { PointCollection } from 'btc-models';
 
 export default function flag( req, res ) {
-  //see if the information is getting there in the first place.
-  const {pointId} = req.body;
+	//see if the information is getting there in the first place.
+  	const {pointId} = req.body;
 
   if ( pointId === '' || pointId === undefined ) {
     return res.status( 400 ).json( {
@@ -29,6 +29,7 @@ export default function flag( req, res ) {
   }
 
   // Check that the pointId is valid
+
   new PointCollection().fetch( {
     success: ( points, response, options ) => {
       const point = points.findWhere( { _id: pointId } );
@@ -67,14 +68,14 @@ export default function flag( req, res ) {
           return res.status( 200 ).end();
         },
 
-        error: ( comment, response, options ) => {
-          // Couldn't save comment
-          return res.status( 400 ).json( { error: response.message } );
-        }
-      } );
-    },
+				error: ( comment, response, options ) => {
+					// Couldn't save comment
+					return res.status( 400 ).json( { error: response.message } );
+				}
+			});
+		},
 
-    // Couldn't fetch points
-    error: ( users, response, options ) => res.status( 500 ).end()
-  } );
+		// Couldn't fetch points
+		error: ( users, response, options ) => res.status( 500 ).end()
+	});
 }
