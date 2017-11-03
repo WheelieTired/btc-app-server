@@ -40,7 +40,7 @@ export function createToken( email, roles ) {
 }
 
 export function checkEmail( req, res ) {
-  const {email} = req.body;
+  const { email } = req.body;
   const emailAddress = email;
   if ( emailAddress === '' || emailAddress === undefined ) {
     return res.status( 400 ).json( {
@@ -53,36 +53,36 @@ export function checkEmail( req, res ) {
       const user = users.findWhere( { email: emailAddress } );
       if ( user == undefined ) {
         return res.status( 400 ).json( {
-          'bad request': 'User was not found in the database.'
+              'bad request': 'User was not found in the database.'
         } );
       }
       const verification = createToken( emailAddress, [] );
 
-      // Save new token into the database
-      user.save( { verification }, {
-        // Allow for backbone-pouch to set _id, _rev, etc.
-        force: true,
+        // Save new token into the database
+        user.save( { verification }, {
+          // Allow for backbone-pouch to set _id, _rev, etc.
+          force: true,
 
-        // Mail a confirmation message to the user
-        success: ( user, response, options ) => {
-          if ( config.get( 'mail.send' ) ) {
-            forgotPassword( user, verification );
-          } else {
-            console.log( 'verification: ' + verification );
+          // Mail a confirmation message to the user
+          success: ( user, response, options ) => {
+            if ( config.get( 'mail.send' ) ) {
+              forgotPassword( user, verification );
+            } else {
+              console.log( 'verification: ' + verification );
+            }
+            //return res.status( 200 ).end();
+          },
+
+          error: ( user, response, options ) => {
+            return res.status( 400 ).json( { error: response.message } );
           }
-        //return res.status( 200 ).end();
-        },
-
-        error: ( user, response, options ) => {
-          return res.status( 400 ).json( { error: response.message } );
-        }
-      } );
+        } );
     },
     // Couldn't fetch user models -- not the user's problem
     error: ( users, response, options ) => res.status( 500 ).end()
   } );
   return res.status( 200 ).json( {
     ok: 'an email has been sent',
-  //auth_token: createToken( email, body.roles )
+    //auth_token: createToken( email, body.roles )
   } );
 }
