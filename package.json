@@ -4,42 +4,38 @@
   "description": "Server for the Bicycle Touring Companion app",
   "main": "src/index.js",
   "dependencies": {
-    "ajv": "~4.11.5",
-    "backbone": "~1.3.3",
-    "backbone-pouch": "~1.5.0",
-    "body-parser": "~1.17.1",
-    "btc-models": "https://github.com/tour-de-force/btc-models#built",
-    "config": "~1.25.1",
-    "express": "~4.15.2",
-    "express-validator": "~3.1.2",
+    "ajv": "~5.3.0",
+    "body-parser": "^1.18.2",
+    "btc-models": "https://github.com/WheelieTired/btc-models#built",
+    "config": "^1.27.0",
+    "express": "^4.16.2",
+    "express-validator": "^4.3.0",
     "js-yaml": "~3.8.2",
-    "jsonwebtoken": "~7.3.0",
+    "jsonwebtoken": "^8.1.0",
     "lodash": "~4.17.4",
-    "morgan": "~1.8.1",
+    "morgan": "^1.9.0",
     "multer": "~1.3.0",
-    "nano": "~6.2.0",
+    "nano": "^6.4.2",
     "nodemailer": "~2.7.2",
-    "passport": "~0.3.2",
-    "passport-jwt": "~2.2.1",
-    "pouchdb": "~6.1.2",
-    "underscore": "~1.8.3",
-    "uuid": "~3.0.1"
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "pouchdb": "^6.3.4",
+    "underscore": "~1.8.3"
   },
   "devDependencies": {
-    "babel-cli": "~6.24.0",
+    "babel-cli": "^6.26.0",
     "babel-preset-es2015": "~6.24.0",
     "chai": "~3.5.0",
-    "chai-as-promised": "~6.0.0",
-    "coveralls": "~2.12.0",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.0",
     "docco": "~0.7.0",
     "esformatter": "~0.10.0",
     "esformatter-ignore": "~0.1.3",
-    "eslint": "~3.18.0",
+    "eslint": "^4.10.0",
     "fs-tools": "~0.3.0",
-    "mocha": "~3.2.0",
-    "nyc": "~10.1.2",
-    "open": "~0.0.5",
-    "sinon": "~2.1.0",
+    "mocha": "^4.0.1",
+    "nyc": "^11.2.1",
+    "sinon": "^4.0.2",
     "supertest": "~3.0.0"
   },
   "scripts": {
@@ -65,12 +61,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tour-de-Force/btc-app-server.git"
+    "url": "git+https://github.com/WheelieTired/btc-app-server.git"
   },
   "author": "Adventure Cycling Association",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/Tour-de-Force/btc-app-server/issues"
+    "url": "https://github.com/WheelieTired/btc-app-server/issues"
   },
-  "homepage": "https://github.com/Tour-de-Force/btc-app-server#readme"
+  "homepage": "https://github.com/WheelieTired/btc-app-server#readme"
 }
