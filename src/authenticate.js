@@ -25,7 +25,7 @@ import config from 'config';
 
 import { nano_db } from './util/couch';
 
-import { User, UserRefCollection } from 'btc-models';
+import { UserRefCollection } from 'btc-models';
 
 const secret = config.get( 'token.secret' );
 const issuer = config.get( 'token.iss' );

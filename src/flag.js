@@ -34,7 +34,7 @@ export default function flag( req, res ) {
       const point = points.findWhere( { _id: pointId } );
       if ( !point ) {
         // Point they are trying to comment on doesn't exist
-        return res.status( 400 ).json( { error: "Specified point doesn't exist" } );
+        return res.status( 400 ).json( { error: 'Specified point doesn\'t exist' } );
       }
       //ELSE: there is a point and the following can take place...
       var cur_flagged_by = point.get( 'flagged_by' );
@@ -43,7 +43,7 @@ export default function flag( req, res ) {
       for ( var i = 0, len = cur_flagged_by.length; i < len; i++ ) {
         if ( cur_flagged_by[ i ].user == req.user.email ) {
           //Let the user know they have already flagged this point.
-          return res.status( 400 ).json( { error: "You've already flagged this point" } );
+          return res.status( 400 ).json( { error: 'You\'ve already flagged this point' } );
         }
       }
       //Add the user email and reason to the array flagged_by.
@@ -56,11 +56,12 @@ export default function flag( req, res ) {
         point.set( 'is_hidden', true );
       }
       if ( point.isValid() == false ) {
-        return res.status( 400 ).json( { error: "Enter a reason for flagging between 1 and 140 characters" } );
+        return res.status( 400 ).json( { error: 'Enter a reason for flagging between 1 and 140 characters' } );
       }
       // Save comment into the database
       point.save( {}, {
         force: true,
+
         // Comment saved successfully
         success: ( comment, response, options ) => {
           return res.status( 200 ).end();

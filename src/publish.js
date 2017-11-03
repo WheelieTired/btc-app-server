@@ -19,7 +19,7 @@
 
 import { PointCollection, Photo } from 'btc-models';
 
-import { isArray, isNumber, cloneDeep } from 'lodash';
+import { isArray, isNumber } from 'lodash';
 
 // Endpoint to publish multiple point updates
 //

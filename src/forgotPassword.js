@@ -17,13 +17,10 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { pick } from 'underscore';
-import { template } from 'underscore';
-import fs from 'fs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 
-import { User, UserRefCollection } from 'btc-models';
+import { UserRefCollection } from 'btc-models';
 import { forgotPassword } from './util/mailer';
 
 
