@@ -108,7 +108,7 @@ export default function authenticate( req, res ) {
         },
         // Couldn't fetch user models -- not the user's problem
         error: ( users, response, options ) => res.status( 500 ).end()
-      });
+      } );
     }
   } );
 }
