@@ -1,5 +1,4 @@
 # API server for Bicycle Touring Companion
-[![Build Status](https://travis-ci.org/WheelieTired/btc-app-server.svg?branch=develop)](https://travis-ci.org/WheelieTired/btc-app-server)
 
 The server for the bicycle touring companion handles user interactions that must be handled online. Right now, the server lets users log in and publish alerts and services. While users may replicate changes from the master database to their devices, they cannot write back to the database directly. Changes must be published to the server so we can validate what goes into the official record. 
 The server is a Node.js application that runs the Express.js server-side framework. It runs in a Windows Server 2012 cloud instance on AWS. 
