@@ -9,7 +9,7 @@
     "btc-models": "https://github.com/WheelieTired/btc-models#built",
     "config": "^1.27.0",
     "express": "^4.16.2",
-    "express-validator": "^4.3.0",
+    "express-validator": "~3.1.2",
     "js-yaml": "~3.8.2",
     "jsonwebtoken": "^8.1.0",
     "lodash": "~4.17.4",
