@@ -21,7 +21,6 @@
 
 import request from 'supertest';
 import sinon from 'sinon';
-import { assert } from 'chai';
 
 // Under test
 import { app } from '../lib/app';
@@ -43,7 +42,6 @@ describe( 'Routes', function() {
   } );
 } );
 
-let token;
 describe( 'Moderator user', function() {
   before( function() {
     this.request = request( app );
@@ -57,7 +55,7 @@ describe( 'Moderator user', function() {
       this.request.post( '/authenticate' )
         .send( { email: 'moderator@example.com', password: 'moderator' } )
         .expect( function( res ) {
-          token = res.body.auth_token;
+          //token = res.body.auth_token;
         } )
         .end( done );
     } );
