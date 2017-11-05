@@ -51,7 +51,7 @@ describe( 'Routes', function() {
         after( function() {
           this.stub.restore();
         } );
-        it( '+ Response 200', /**function( done ) {
+        it( '+ Response 200' /**function( done ) {
           this.request.post( '/authenticate' )
             .send( { email: 'foo@example.com', password: 'foo' } )
             .expect( 200, done );
