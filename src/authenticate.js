@@ -39,7 +39,7 @@ export const userStrategy = new JwtStrategy(
     algorithms: [ algorithm ],
     secretOrKey: secret,
     authScheme: 'JWT',
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme( 'JWT' )
   },
   ( jwt_payload, done ) => {
     done( null, jwt_payload );
@@ -53,7 +53,7 @@ export const moderatorStrategy = new JwtStrategy(
     algorithms: [ algorithm ],
     secretOrKey: secret,
     authScheme: 'JWT',
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme( 'JWT' )
   },
   ( jwt_payload, done ) => {
     if ( contains( jwt_payload.roles, 'moderator' ) ) {
